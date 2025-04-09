@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-NAME ?= 'default'
+NAME ?= 'test_workflow'
 
 docker-build: ## Build the Docker container
 	docker build -t $(NAME) -f ./Docker/Dockerfile .
