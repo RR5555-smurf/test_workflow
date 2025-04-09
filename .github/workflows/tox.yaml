@@ -3,7 +3,7 @@
 
 name: Tox
 
-on: 
+on:
   workflow_dispatch:
   # [push]
 
