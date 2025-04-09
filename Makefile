@@ -6,7 +6,7 @@ docker-build: ## Build the Docker container
 
 
 docker-run: ## Run the Docker container
-	docker run --rm -it \
+	docker run --rm -it -v .:/root/test_workflow \
 	--name $(NAME) $(NAME)
 
 
