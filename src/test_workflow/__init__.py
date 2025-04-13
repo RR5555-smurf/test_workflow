@@ -1,2 +1,6 @@
+"""Test GitHub workflows, actions and more."""
+
+
 def main() -> None:
-    print("Hello from test-workflow!")
+	"""Say 'Hi'."""
+	print("Hello from test-workflow!")
