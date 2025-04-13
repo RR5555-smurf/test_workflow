@@ -1,5 +1,7 @@
 version: 2
 updates:
+
+# Configuration for Python pkgs
 - package-ecosystem: uv
   directory: "/"
   schedule:
@@ -8,4 +10,23 @@ updates:
     python-packages:
       patterns:
         - "*"
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: weekly
+  groups:
+    python-packages:
+      patterns:
+        - "*"
 
+# Configuration for Dockerfile
+- package-ecosystem: "docker"
+  directory: "/Dockerfile"
+  schedule:
+    interval: "weekly"
+
+# Configuration for GitHub Actions
+- package-ecosystem: "github-actions"
+  directory: "/.github"
+  schedule:
+    interval: "weekly"
