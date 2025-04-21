@@ -1,5 +1,5 @@
 
-name: Ruff Linter & Formatter
+name: Ruff Linter & Formatter (uv)
 
 
 on:
@@ -11,20 +11,25 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version-file: ".python-version"
 
     - name: Install dependencies
-      run: pip install .[dev]
+      run: uv sync --dev
 
 
     # - name: Install the code linting and formatting tool Ruff
     #   run: uv pip install ruff
     - name: Lint code with Ruff
-      run: python ruff check --output-format=github --target-version=py313
+      run: uv run ruff check --output-format=github --target-version=py313
     - name: Check code formatting with Ruff
-      run: python ruff format --diff --target-version=py313
+      run: uv run ruff format --diff --target-version=py313
       continue-on-error: true
 
