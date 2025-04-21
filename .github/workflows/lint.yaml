@@ -17,7 +17,7 @@ jobs:
         python-version-file: ".python-version"
 
     - name: Install dependencies
-      run: pip install .[dev]
+      run: pip install --group dev
 
 
     # - name: Install the code linting and formatting tool Ruff
