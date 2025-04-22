@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  ruff_lint_N_format:
+  mypy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -25,5 +25,5 @@ jobs:
       run: uv sync --dev
 
     - name: Run static type checking (`mypy`)
-      run: uv run mypy
+      run: uv run mypy src tests
 

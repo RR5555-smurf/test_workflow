@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  ruff_lint_N_format:
+  mypy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -24,8 +24,9 @@ jobs:
 
     - name: Install dependencies
       run: |
+        python -m pip install .
         python -m pip install mypy
 
     - name: Run static type checking (`mypy`)
-      run: python -m mypy
+      run: python -m mypy src tests
 
