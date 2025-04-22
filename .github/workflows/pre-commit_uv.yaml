@@ -1,5 +1,5 @@
 
-name: pre-commit
+name: pre-commit (uv)
 
 on:
   workflow_dispatch:
@@ -12,5 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: pre-commit/action@v3.0.1
+    - uses: tox-dev/action-pre-commit-uv@v1.0.2
+
 
