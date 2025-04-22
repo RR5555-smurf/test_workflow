@@ -8,19 +8,21 @@ on:
   # [push]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  tox:
     strategy:
       matrix:
-        python: ["3.9", "3.11", "3.13"]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Python
+      - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python }}
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip' # caching pip dependencies
       - name: Install tox and any other packages
         run: pip install tox
       - name: Run tox
