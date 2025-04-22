@@ -16,8 +16,6 @@ test-workflow = "test_workflow:main"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[optional-dependencies]
-dev = [{include = "dev"}]
 
 [dependency-groups]
 dev = [
