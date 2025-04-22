@@ -23,8 +23,10 @@ jobs:
 
 
     - name: Install dependencies
+      run: pip install .[dev]
+      # run: python -m pip install ruff
       # run: pip install --group dev
-      run: pip install --group './test_workflow/pyproject.toml:dev'
+      # run: pip install --group './test_workflow/pyproject.toml:dev'
 
 
 
