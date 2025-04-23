@@ -1,6 +1,6 @@
 
 
-name: Tox (uv)
+name: Tox parallel (uv)
 
 on:
   workflow_dispatch:
