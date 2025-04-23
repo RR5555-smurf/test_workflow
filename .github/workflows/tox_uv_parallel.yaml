@@ -26,5 +26,5 @@ jobs:
         run: uv sync --group tox
       - name: Run tox
         # run: uv run tox --parallel --skip-env py3[5-8]
-        run: uv run tox --parallel --skip-env py3[5-8]|lint|format|mypy
+        run: uv run tox --parallel --skip-env "py3[5-8]|lint|format|mypy"
 
