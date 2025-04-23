@@ -1,0 +1,29 @@
+
+
+name: Tox (uv)
+
+on:
+  workflow_dispatch:
+  # [push]
+
+jobs:
+  tox:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install tox and any other packages
+        run: uv sync --group tox
+      - name: Run tox
+        run: uv run tox --parallel
+
