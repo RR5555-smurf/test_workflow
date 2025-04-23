@@ -1,0 +1,31 @@
+
+name: Tox parallel
+
+on:
+  workflow_dispatch:
+  # [push]
+
+jobs:
+  tox:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Pythons
+        uses: actions/setup-python@v5
+        with:
+          python-version: |
+            3.9
+            3.10
+            3.11
+            3.12
+            3.13
+          cache: 'pip' # caching pip dependencies
+      - name: Install tox and any other packages
+        run: pip install tox
+      - name: Run tox
+        run: tox --skip-env "py3[5-8]|lint|format|mypy"
