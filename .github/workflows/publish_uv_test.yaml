@@ -75,5 +75,5 @@ jobs:
         uses: astral-sh/setup-uv@v5
 
       - name: Publish release distributions to PyPI
-        uses: uv publish --trusted-publishing always --publish-url https://test.pypi.org/legacy/
+        run: uv publish --trusted-publishing always --publish-url https://test.pypi.org/legacy/
 
