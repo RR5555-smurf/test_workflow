@@ -57,7 +57,7 @@ jobs:
     needs:
       - release-build
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
       - name: Validate package version consistency
         run: |
           TAG_VERSION=${GITHUB_REF#refs/tags/v}
