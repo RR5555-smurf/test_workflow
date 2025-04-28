@@ -76,7 +76,7 @@ jobs:
     environment:
       name: testpypi
       # OPTIONAL: uncomment and update to include your PyPI project URL in the deployment status:
-      url: https://test.pypi.org/project/test_workflow
+      url: https://test.pypi.org/project/rr_test_workflow
 
     steps:
       - name: Retrieve release distributions

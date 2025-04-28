@@ -1,6 +1,6 @@
 """Test main.py."""
 
-from test_workflow.main import main
+from rr_test_workflow.main import main
 
 
 def test_main():

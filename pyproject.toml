@@ -1,13 +1,13 @@
 [project]
-name = "test-workflow"
+name = "rr-test-workflow"
 dynamic = ["version"]
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "RR5555", email = "renardromain@hotmail.fr" }
+    { name = "RR5555-smurf", email = "renardromain@hotmail.fr" }
 ]
 maintainers = [
-    { name = "RR5555", email = "renardromain@hotmail.fr" }
+    { name = "RR5555-smurf", email = "renardromain@hotmail.fr" }
 ]
 requires-python = ">=3.9"
 dependencies = []
