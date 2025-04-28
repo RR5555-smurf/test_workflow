@@ -4,10 +4,16 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { email = "renardromain@hotmail.fr" }
+    { 
+		name = "RR5555",
+		email = "renardromain@hotmail.fr" }
 ]
 requires-python = ">=3.9"
 dependencies = []
+
+
+[project.urls]
+Repository = "https://github.com/RR5555-smurf/test_workflow"
 
 [project.scripts]
 test-workflow = "test_workflow:main"
