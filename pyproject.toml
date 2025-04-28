@@ -30,7 +30,7 @@ source = "vcs"
 version_scheme = "no-guess-dev"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "__version__.py"
+version-file = "src/rr_test_workflow/__about__.py"
 
 [dependency-groups]
 dev = [
