@@ -13,8 +13,11 @@ name: Upload Python Package (TestPyPI)
 
 on:
   # workflow_dispatch:
-  release:
-    types: [published]
+  # release:
+  #   types: [published]
+  push:
+    tags:
+      - "v*.*.*"  # Runs only on version tags
 
 permissions:
   contents: read
