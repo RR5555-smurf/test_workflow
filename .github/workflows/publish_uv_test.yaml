@@ -44,7 +44,7 @@ jobs:
         run: |
           # NOTE: put your own distribution build steps here.
           uv build
-          
+
       # - name: Validate package version consistency
       #   run: |
       #     TAG_VERSION=${GITHUB_REF#refs/tags/v}
