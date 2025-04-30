@@ -35,3 +35,23 @@ INTERNALERROR>   File "D:\a\test_workflow\test_workflow\.tox\py311\Lib\site-pack
 INTERNALERROR>     os.remove(path)
 INTERNALERROR> PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'D:\\a\\test_workflow\\test_workflow\\.coverage.fv-az844-194.7072.XcZFRRsx.c'
 ```
+
+
+## Git conformity
+
+Name:
+```bash
+# Set:
+git config user.name "Mona Lisa"
+# Check:
+git config user.name
+```
+Email:
+```bash
+# Set:
+git config user.email "YOUR_EMAIL"
+# Check:
+git config user.email
+```
+
+
