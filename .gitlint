@@ -1,0 +1,6 @@
+[general]
+# Ignore rules, reference them by id or name (comma-separated)
+ignore=B6, B1, T1
+# B6: Body message is missing
+# T1 Title exceeds max length (87>72)
+# B1 Line exceeds max length (105>80)
