@@ -38,6 +38,20 @@ pre-commit-enforce: ## Install the pre-commit as a git hook (you can just run pr
 update-pre-commit-hooks: ## Update automatically the hooks for `pre-commit`
 	uv run pre-commit autoupdate
 
+gitlint: ## Call gitlint `pre-commit` hook on last git commit msg
+	pre-commit run gitlint --hook-stage commit-msg --commit-msg-filename .git/COMMIT_EDITMSG
+
+commitizen-check: ## Call commitizen check `pre-commit` hook on last git commit msg
+	pre-commit run commitizen --hook-stage commit-msg --commit-msg-filename .git/COMMIT_EDITMSG
+
+commit-check: ## Semantic/Conventional commits check
+	$(MAKE) commitizen-check
+	$(MAKE) gitlint
+
+pre-commit-msg: ## Install `commit-msg`-stage pre-commit hooks
+	pre-commit install --hook-type commit-msg
+
+
 # https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
 
