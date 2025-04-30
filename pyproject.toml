@@ -45,7 +45,7 @@ pre-commit = [
 tox = [
     "tox-uv>=1.25.0; python_version >= '3.9'",
 ]
-semantic-commit = [
+semantic-commits = [
 	"commitizen"
 ]
 
