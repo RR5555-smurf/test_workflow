@@ -43,7 +43,8 @@ jobs:
       - name: Build release distributions
         run: |
           # NOTE: put your own distribution build steps here.
-          uv build
+          # uv build
+          uv build --wheel
 
       # - name: Validate package version consistency
       #   run: |
