@@ -8,6 +8,8 @@
         "ms-vscode.makefile-tools",
         "njpwerner.autodocstring",
         "oderwat.indent-rainbow",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+		"tamasfe.even-better-toml",
+		"samuelcolvin.jinjahtml"
     ]
 }
