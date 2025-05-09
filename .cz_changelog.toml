@@ -1,6 +1,7 @@
 [tool.commitizen]
 use_shortcuts = true
 name = "cz_customize"
+tag_format="v$version"
 
 
 [tool.commitizen.customize]
