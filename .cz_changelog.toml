@@ -1,0 +1,10 @@
+[tool.commitizen]
+use_shortcuts = true
+name = "cz_customize"
+
+
+[tool.commitizen.customize]
+change_type_order = ["BREAKING CHANGE", "Feat", "Fix", "Refactor", "Perf", "Build", "Docs", "Test", "CI", "Chore", "Style", "Revert"]
+change_type_map = {"feat"="Feat", "fix"="Fix", "refactor"="Refactor", "perf"="Perf", "build"="Build", "docs"="Docs", "test"="Test", "ci"="CI", "chore"="Chore", "style"="Style", "revert"="Revert"}
+commit_parser = "^((?P<change_type>feat|fix|refactor|perf|BREAKING CHANGE|build|docs|test|ci|chore|style|revert)(?:\\((?P<scope>[^()\\r\\n]*)\\)|\\()?(?P<breaking>!)?|\\w+!):\\s(?P<message>.*)?"
+
