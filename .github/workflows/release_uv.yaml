@@ -36,13 +36,14 @@ jobs:
 
       - name: Validate package version consistency
         run: |
+          PACKAGE_VERSION=$(echo "import test_workflow.__version__ as v; print(v.__version__)" | uv run -)
+
           if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
-          echo "Version mismatch! GitHub tag is $TAG_VERSION but package version is $PACKAGE_VERSION."
-          exit 1
+            echo "Version mismatch! GitHub tag is $TAG_VERSION but package version is $PACKAGE_VERSION."
+            exit 1
           fi
         env:
-          TAG_VERSION: ${GITHUB_REF#refs/tags/v}
-          PACKAGE_VERSION: $(echo "import test_workflow.__version__ as v; print(v.__version__)" | uv run -)
+          TAG_VERSION: ${{ GITHUB_REF#refs/tags/v }}
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
@@ -56,13 +57,13 @@ jobs:
           uv run cz --config .cz_changelog.toml changelog --file-name CHANGELOG.md --template CHANGELOG.md.j2
           uv run cz changelog --file-name ReleaseNote.md ${TAG_VERSION}
         env:
-          TAG_VERSION: ${GITHUB_REF#refs/tags/v}
+          TAG_VERSION: ${{ GITHUB_REF#refs/tags/v }}
 
       - name: Create GH Release
         run: |
           gh release create ${TAG_VERSION} --verify-tag --notes-file ReleaseNote.md --draft CHANGELOG.md ReleaseNote.md
         env:
-          TAG_VERSION: ${GITHUB_REF#refs/tags/v}
+          TAG_VERSION: ${{ GITHUB_REF#refs/tags/v }}
 
 
 
