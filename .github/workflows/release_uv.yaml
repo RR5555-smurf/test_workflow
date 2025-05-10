@@ -1,0 +1,71 @@
+
+name: Build pkg & Create release
+
+
+on:
+  push:
+    tags:
+      - "v*.*.*"  # Runs only on version tags
+
+permissions:
+  contents: read
+
+jobs:
+  release-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Build release distributions
+        run: |
+          # NOTE: put your own distribution build steps here.
+          # uv build
+          uv build --wheel
+
+      - name: Validate package version consistency
+        run: |
+          if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+          echo "Version mismatch! GitHub tag is $TAG_VERSION but package version is $PACKAGE_VERSION."
+          exit 1
+          fi
+        env:
+          TAG_VERSION: ${GITHUB_REF#refs/tags/v}
+          PACKAGE_VERSION: $(echo "import test_workflow.__version__ as v; print(v.__version__)" | uv run -)
+
+      - name: Upload distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Generate CHANGELOG & Release Notes
+        run : |
+          uv sync --only-group semantic-commits
+          uv run cz --config .cz_changelog.toml changelog --file-name CHANGELOG.md --template CHANGELOG.md.j2
+          uv run cz changelog --file-name ReleaseNote.md ${TAG_VERSION}
+        env:
+          TAG_VERSION: ${GITHUB_REF#refs/tags/v}
+
+      - name: Create GH Release
+        run: |
+          gh release create ${TAG_VERSION} --verify-tag --notes-file ReleaseNote.md --draft CHANGELOG.md ReleaseNote.md
+        env:
+          TAG_VERSION: ${GITHUB_REF#refs/tags/v}
+
+
+
+
+
+
