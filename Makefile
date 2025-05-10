@@ -52,6 +52,10 @@ pre-commit-msg: ## Install `commit-msg`-stage pre-commit hooks
 	pre-commit install --hook-type commit-msg
 
 
+semver: ## Display SemVer for current pkg
+	uv run cz bump --dry-run
+
+
 # https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
 
