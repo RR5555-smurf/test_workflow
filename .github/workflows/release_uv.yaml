@@ -64,6 +64,7 @@ jobs:
           gh release create ${TAG_VERSION} --verify-tag --notes-file ReleaseNote.md --draft CHANGELOG.md ReleaseNote.md
         env:
           TAG_VERSION: ${{ github.ref_name }}
+          GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
 
 
 
