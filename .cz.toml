@@ -2,6 +2,7 @@
 use_shortcuts = true
 tag_format="v$version"
 # name = "cz_customize"
+version_provider="scm"
 
 [tool.commitizen.customize]
 # From: commitizen/defaults.py & commitizen/cz/conventional_commits/conventional_commits.py
