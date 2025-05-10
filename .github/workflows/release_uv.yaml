@@ -38,8 +38,8 @@ jobs:
         run: |
           PACKAGE_VERSION=$(echo "import rr_test_workflow as v; print(v.__version__)" | uv run -)
 
-          if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
-            echo "Version mismatch! GitHub tag is $TAG_VERSION but package version is $PACKAGE_VERSION."
+          if [ "$TAG_VERSION" != "v$PACKAGE_VERSION" ]; then
+            echo "Version mismatch! GitHub tag is $TAG_VERSION but package version is v$PACKAGE_VERSION."
             exit 1
           fi
         env:
