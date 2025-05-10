@@ -43,7 +43,7 @@ jobs:
             exit 1
           fi
         env:
-          TAG_VERSION: ${{ GITHUB_REF#refs/tags/v }}
+          TAG_VERSION: ${{ github.ref }}
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
@@ -57,13 +57,13 @@ jobs:
           uv run cz --config .cz_changelog.toml changelog --file-name CHANGELOG.md --template CHANGELOG.md.j2
           uv run cz changelog --file-name ReleaseNote.md ${TAG_VERSION}
         env:
-          TAG_VERSION: ${{ GITHUB_REF#refs/tags/v }}
+          TAG_VERSION: ${{ github.ref }}
 
       - name: Create GH Release
         run: |
           gh release create ${TAG_VERSION} --verify-tag --notes-file ReleaseNote.md --draft CHANGELOG.md ReleaseNote.md
         env:
-          TAG_VERSION: ${{ GITHUB_REF#refs/tags/v }}
+          TAG_VERSION: ${{ github.ref }}
 
 
 
