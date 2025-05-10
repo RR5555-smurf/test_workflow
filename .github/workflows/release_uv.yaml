@@ -36,7 +36,7 @@ jobs:
 
       - name: Validate package version consistency
         run: |
-          PACKAGE_VERSION=$(echo "import test_workflow.__version__ as v; print(v.__version__)" | uv run -)
+          PACKAGE_VERSION=$(echo "import rr_test_workflow.__version__ as v; print(v.__version__)" | uv run -)
 
           if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
             echo "Version mismatch! GitHub tag is $TAG_VERSION but package version is $PACKAGE_VERSION."
