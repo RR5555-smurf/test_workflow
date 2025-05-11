@@ -21,7 +21,7 @@ jobs:
         run: |
           git tag
           # git fetch --tags origin main --force
-          git pull --tags
+          git pull --tags --force
 
 
       - name: Install uv
