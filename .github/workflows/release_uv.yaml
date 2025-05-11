@@ -53,7 +53,7 @@ jobs:
 
       - name: Generate CHANGELOG & Release Notes
         run : |
-          uv sync --only-group semantic-commits
+          uv sync --group semantic-commits
           uv run cz --config .cz_changelog.toml changelog --file-name CHANGELOG.md --template CHANGELOG.md.j2
           uv run cz --config .cz.toml changelog --file-name ReleaseNote.md --template ReleaseNote.md.j2 --start-rev v1000.0.0 ${TAG_VERSION}
         env:
