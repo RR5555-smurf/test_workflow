@@ -50,12 +50,6 @@ jobs:
         with:
           name: release-dists
           path: dist/
-      
-      - name: Upload distributions
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-dists
-          path: dist/*.whl
 
       - name: Generate CHANGELOG & Release Notes
         run : |
@@ -67,7 +61,7 @@ jobs:
 
       - name: Create GH Release
         run: |
-          gh release create ${TAG_VERSION} --verify-tag --notes-file ReleaseNote.md --draft CHANGELOG.md ReleaseNote.md
+          gh release create ${TAG_VERSION} --verify-tag --notes-file ReleaseNote.md --draft CHANGELOG.md ReleaseNote.md dist/*.whl
         env:
           TAG_VERSION: ${{ github.ref_name }}
           GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
