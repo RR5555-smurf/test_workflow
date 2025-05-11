@@ -40,8 +40,9 @@ jobs:
       - name: Get run ID of "Build pkg & Create release" workflow
         id: get-run-id
         run: |
-          OTHER_REPO="${{ github.repository }}"
-          WF_NAME="Build pkg & Create release"
+          echo ${{ github.repository }}
+          OTHER_REPO="${{ github.repository }}/tree/{{ github.ref_name }}"
+          WF_NAME="release_uv.yaml"
           RUN_ID=`gh run --repo ${OTHER_REPO} list --workflow ${WF_NAME} --json databaseId --jq .[0].databaseId`
           echo "Detected latest run id of ${RUN_ID} for workflow ${WF_NAME}"
           echo "run-id=${RUN_ID}" >> "$GITHUB_OUTPUT"
