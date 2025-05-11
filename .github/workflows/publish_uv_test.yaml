@@ -41,6 +41,7 @@ jobs:
         id: get-run-id
         run: |
           echo ${{ github.repository }}
+          echo "${{ github.repository }}/tree/${{ github.ref_name }}"
           OTHER_REPO="${{ github.repository }}/tree/${{ github.ref_name }}"
           WF_NAME="release_uv.yaml"
           RUN_ID=`gh run --repo ${OTHER_REPO} list --workflow ${WF_NAME} --json databaseId --jq .[0].databaseId`
