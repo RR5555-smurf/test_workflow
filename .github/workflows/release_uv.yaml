@@ -17,11 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Display git log before fetch/pull
+        run: |
+          git log | head -n 60
+
       - name: Fetch tags
         run: |
           git tag
           # git fetch --tags origin main --force
           git pull --tags origin main --force
+
+      - name: Display git log after fetch/pull
+        run: |
+          git log | head -n 60
 
 
       - name: Install uv
