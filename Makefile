@@ -55,6 +55,10 @@ pre-commit-msg: ## Install `commit-msg`-stage pre-commit hooks
 semver: ## Display SemVer for current pkg
 	uv run cz bump --dry-run
 
+tag: ## Prompt for running git tag with next SemVer
+	uv run cz bump --dry-run
+	@echo "---"
+	@VERSION="$(shell uv run cz bump --dry-run --get-next)"; while true; do echo "Do you want to:\n\`git tag -a \"v$$VERSION\" -m \"Release v$$VERSION\"\`? [Yn]"; read yn; yn=$${yn:-Y}; case $$yn in [Yy]*) git tag -a "v$$VERSION" -m "Release v$$VERSION"; break;; [Nn]*) exit;; *) echo "Please answer yes or no.";; esac; done
 
 # https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
