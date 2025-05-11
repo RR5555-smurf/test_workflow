@@ -55,7 +55,7 @@ jobs:
         run : |
           uv sync --only-group semantic-commits
           uv run cz --config .cz_changelog.toml changelog --file-name CHANGELOG.md --template CHANGELOG.md.j2
-          uv run cz --config .cz.toml changelog --file-name ReleaseNote.md --template ReleaseNote.md.j2 ${TAG_VERSION}
+          uv run cz --config .cz.toml changelog --file-name ReleaseNote.md --template ReleaseNote.md.j2 --start-rev v1000.0.0 ${TAG_VERSION}
         env:
           TAG_VERSION: ${{ github.ref_name }}
 
