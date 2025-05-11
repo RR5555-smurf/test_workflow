@@ -16,16 +16,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: "main"
+          fetch-tags: true
+          fetch-depth: 0
 
-      - name: Display git log before fetch/pull
-        run: |
-          git log | head -n 60
 
-      - name: Fetch tags
-        run: |
-          git tag
-          # git fetch --tags origin main --force
-          git pull --tags --log origin main --force
+      # - name: Display git log before fetch/pull
+        # run: |
+          # git log | head -n 60
+
+      # - name: Fetch tags
+      #   run: |
+      #     git tag
+      #     # git fetch --tags origin main --force
+      #     git pull --tags --log origin main --force
 
       - name: Display git log after fetch/pull
         run: |
