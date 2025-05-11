@@ -21,19 +21,9 @@ jobs:
           fetch-tags: true
           fetch-depth: 0
 
-
-      # - name: Display git log before fetch/pull
-        # run: |
-          # git log | head -n 60
-
-      # - name: Fetch tags
-      #   run: |
-      #     git tag
-      #     # git fetch --tags origin main --force
-      #     git pull --tags --log origin main --force
-
-      - name: Display git log after fetch/pull
+      - name: Display git log & tag
         run: |
+          git tag
           git log | head -n 60
 
 
@@ -73,18 +63,7 @@ jobs:
       - name: Generate CHANGELOG & Release Notes
         run : |
           uv sync --group semantic-commits
-          uv run cz --config .cz_changelog.toml changelog --file-name CHANGELOG.md --template CHANGELOG.md.j2 --start-rev 'v1000.0.0'
-          git tag
-          source .venv/bin/activate
-          git cz --config .cz_changelog.toml changelog --file-name CHANGELOG.md --template CHANGELOG.md.j2 --dry-run
-          deactivate
-          echo "---[0]"
-          uv run cz --config .cz_changelog.toml changelog --file-name CHANGELOG.md --template CHANGELOG.md.j2 --start-rev 'v1000.0.0' --dry-run
-          echo "---[1]"
-          uv run cz --config .cz_changelog.toml changelog --template CHANGELOG.md.j2 --start-rev v1000.0.0 --dry-run
-          echo "---[2]"
-          uv run cz --config .cz_changelog.toml changelog --template CHANGELOG.md.j2 v1000.0.0..${TAG_VERSION} --dry-run
-          echo "---[3]"
+          uv run cz --config .cz_changelog.toml changelog --file-name CHANGELOG.md --template CHANGELOG.md.j2
           uv run cz --config .cz.toml changelog --file-name ReleaseNote.md --template ReleaseNote.md.j2 ${TAG_VERSION}
         env:
           TAG_VERSION: ${{ github.ref_name }}
