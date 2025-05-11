@@ -54,3 +54,33 @@ git config user.email "YOUR_EMAIL"
 git config user.email
 ```
 
+# PATs
+
+|Secrets|PAT Name|Permissions|Summary|
+|:---|:---|:---|:---|
+|`GH_RELEASE_TOKEN`|`gh-release`|`Repository permissions`>`Contents`>`Access`>:`Read and write`|<ul><li>Read access to metadata</li><li>Read and Write access to code</li></ul>|
+|`GH_ARTIFACT`|`gh-artifact`|`Repository permissions`>`Actions`>`Access`>:`Read-only`|<ul><li> Read access to actions and metadata</li></ul>|
+
+To create the secrets:\
+`Settings`>`Secrets and variables`>`Actions`>`Secrets`>`Repository secrets`>`New repository secret`
+
+To create PATs:\
+`Profile`>`Settings`>`Developer settings`>`Personnal access tokens`>`Fine-grained tokens`>`Generate new token`
+
+> [!NOTE]
+> Regarding `GH_ARTIFACT`: [Download Artifacts from other Workflow Runs or Repositories](https://github.com/actions/download-artifact?tab=readme-ov-file#download-artifacts-from-other-workflow-runs-or-repositories):
+```yaml
+steps:
+- uses: actions/download-artifact@v4
+  with:
+    name: my-other-artifact
+    github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
+    repository: actions/toolkit
+    run-id: 1234
+```
+
+
+> [!NOTE]
+> [How to download artifact/release-asset in another workflow -- tylermilner's](https://stackoverflow.com/a/78400005)
+
+
