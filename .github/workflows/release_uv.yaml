@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Fetch tags
-        run: git fetch --tags origin/main '+refs/tags/v*:refs/tags/v*'
+        run: git fetch --tags --refmap='+refs/tags/v*:refs/tags/v*' . origin/main
 
 
       - name: Install uv
