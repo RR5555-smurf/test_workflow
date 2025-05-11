@@ -20,6 +20,7 @@ permissions:
   contents: read
 
 jobs:
+
   pypi-publish:
     runs-on: ubuntu-latest
 
@@ -33,10 +34,27 @@ jobs:
       # OPTIONAL: uncomment and update to include your PyPI project URL in the deployment status:
       url: https://test.pypi.org/project/rr_test_workflow
 
+
     steps:
+
+      - name: Get run ID of "Build pkg & Create release" workflow
+        id: get-run-id
+        run: |
+          OTHER_REPO="${{ github.repository }}"
+          WF_NAME="Build pkg & Create release"
+          RUN_ID=`gh run --repo ${OTHER_REPO} list --workflow ${WF_NAME} --json databaseId --jq .[0].databaseId`
+          echo "Detected latest run id of ${RUN_ID} for workflow ${WF_NAME}"
+          echo "run-id=${RUN_ID}" >> "$GITHUB_OUTPUT"
+        # env:
+        #   GH_TOKEN: ${{ github.token }}
+
+
       - name: Retrieve release distributions
         uses: actions/download-artifact@v4
         with:
+          github-token: ${{ secrets.GH_ARTIFACT }}
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.get-run-id.outputs.run-id }}
           name: release-dists
           path: dist/
 
